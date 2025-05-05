@@ -1,0 +1,190 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Legislation API",
+    "version": "1.0.0",
+    "description": "API for managing legislation data and performing searches."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "paths": {
+    "/legislation/search": {
+      "post": {
+        "summary": "Search legislation",
+        "operationId": "searchLegislation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "searchTerm": {
+                    "type": "string",
+                    "description": "The term to search for in legislation titles or content"
+                  },
+                  "legislationTypeId": {
+                    "type": "integer",
+                    "description": "The ID of the legislation type"
+                  },
+                  "searchLocation": {
+                    "type": "string",
+                    "enum": ["All", "Content", "Title"],
+                    "description": "The location where to search (All, Content, or Title)"
+                  }
+                },
+                "required": ["searchTerm", "legislationTypeId", "searchLocation"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful search result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resultCount": {
+                      "type": "integer",
+                      "description": "The number of search results"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "Unique identifier for the legislation"
+                          },
+                          "type": {
+                            "type": "integer",
+                            "description": "The type of legislation (e.g., Laws, Regulations)"
+                          },
+                          "title": {
+                            "type": "string",
+                            "description": "The title of the legislation"
+                          },
+                          "content": {
+                            "type": "string",
+                            "description": "Content of the legislation"
+                          },
+                          "composition": {
+                            "type": "integer",
+                            "description": "The composition or category of the legislation"
+                          },
+                          "official_gazette_date": {
+                            "type": "string",
+                            "format": "date",
+                            "description": "The official gazette publication date"
+                          },
+                          "number": {
+                            "type": "string",
+                            "description": "The number of the legislation"
+                          },
+                          "acceptance_date": {
+                            "type": "string",
+                            "format": "date",
+                            "description": "The acceptance date of the legislation"
+                          },
+                          "url": {
+                            "type": "string",
+                            "description": "URL to access more details about the legislation"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request due to missing parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Both searchTerm, legislationType and searchLocation are required."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/legislation/getLegislationTypes": {
+      "get": {
+        "summary": "Get all legislation types",
+        "operationId": "getLegislationTypes",
+        "responses": {
+          "200": {
+            "description": "A list of all legislation types",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "example": "Laws"
+                          },
+                          "legislationTypeId": {
+                            "type": "integer",
+                            "example": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/legislation/getSearchLocations": {
+      "get": {
+        "summary": "Get all search locations",
+        "operationId": "getSearchLocations",
+        "responses": {
+          "200": {
+            "description": "A list of all search locations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "example": "All"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

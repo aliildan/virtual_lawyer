@@ -1,0 +1,11 @@
+.idea/
+node_modules/
+.venv/
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+*.log
+*.DS_Store

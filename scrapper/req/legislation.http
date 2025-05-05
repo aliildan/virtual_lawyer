@@ -1,0 +1,24 @@
+### POST reqeust to http://localhost:3000/api/legislation/search
+POST http://localhost:3000/api/legislation/search
+Content-Type: application/json
+
+{
+  "searchTerm": "kira",
+  "legislationTypeId": 1,
+  "searchLocation": "Title"
+}
+
+### GET request to http://localhost:3000/api/legislation/getLegislationTypes
+GET http://localhost:3000/api/legislation/getLegislationTypes
+
+### GET request to http://localhost:3000/api/legislation/getSearchLocations
+GET http://localhost:3000/api/legislation/getSearchLocations
+
+### POST request to http://localhost:3000/api/legislation/getLegislationContent
+POST http://localhost:3000/api/legislation/getLegislationContent
+Content-Type: application/json
+
+{
+  "id": 7464,
+  "url": "https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatNo=7464&MevzuatTur=1&MevzuatTertip=5"
+}

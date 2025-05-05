@@ -1,0 +1,5 @@
+from enum import Enum
+
+class Sources(Enum):
+    LEGISLATIONS = "LEGISLATIONS"
+    PRECEDENT_DECISIONS = "PRECEDENT_DECISIONS"
