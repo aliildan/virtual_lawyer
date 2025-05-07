@@ -38,7 +38,7 @@ virtual_lawyer/
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repo/virtual_lawyer.git
+    git clone https://github.com/aliildan/virtual_lawyer.git
     cd virtual_lawyer/lang_chain
     ```
 
